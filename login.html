@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Week 2026 - Student/Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/login-style.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i> CS Week Event Registration
+            </div>
+        </nav>
+    </header>
+
+    <div class="auth-container">
+        <div id="errorMsg" class="error-message">
+            <i class="fas fa-exclamation-triangle"></i> Invalid credentials!
+        </div>
+        <div id="successMsg" class="success-message">
+            <i class="fas fa-check-circle"></i> Registration successful! Please login.
+        </div>
+
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <button class="auth-tab" data-tab="register">
+                <i class="fas fa-user-plus"></i> Register
+            </button>
+        </div>
+
+        <form class="auth-form active" id="loginForm">
+            <h2 class="auth-title">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </h2>
+            
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email *</label>
+                <input type="email" id="loginEmail" required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-lock"></i> Password *</label>
+                <input type="password" id="loginPassword" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+            </button>
+            
+            <div class="switch-link">
+                Don't have an account? <span class="switch-register">Register here</span>
+            </div>
+        </form>
+
+        <form class="auth-form" id="registerForm">
+            <h2 class="auth-title">
+                <i class="fas fa-user-plus"></i> Registration
+            </h2>
+
+            <div class="form-group">
+                <label><i class="fas fa-id-card"></i> ID *</label>
+                <input type="text" id="regId" required>
+            </div>
+
+      <div class="form-group">
+             <label><i class="fas fa-user"></i> Full Name *</label>
+             <div style="display: flex; gap: 0.5rem;">
+                 <input type="text" id="regFirstName" placeholder="First name" required>
+                 <input type="text" id="regLastName" placeholder="Last name" required>
+             </div>
+       </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email *</label>
+                <input type="email" id="regEmail" required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-lock"></i> Password *</label>
+                <input type="password" id="regPassword" required minlength="6">
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-lock"></i> Confirm Password *</label>
+                <input type="password" id="regConfirmPassword" required minlength="6">
+            </div>
+            
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-user-plus"></i> Create Account
+            </button>
+            
+            <div class="switch-link">
+                Already have an account? <span class="switch-login">Login here</span>
+            </div>
+        </form>
+    </div>
+
+
+<script type="module" src="js/login-script.js"></script>
+
+</body>
+</html>
