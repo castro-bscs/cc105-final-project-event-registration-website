@@ -1,0 +1,329 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2a2a5e 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2a2a5e 100%);
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.8rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, #00d4ff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.auth-container {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 3rem;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    margin-top: 100px;
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(50px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(45deg, #00d4ff, #ff00ff);
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 1rem;
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    border: none;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.auth-tab.active {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.auth-tab:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.form-group label i {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    width: 24px;
+    height: 24px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1.2rem 1rem 1.2rem 3rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    background: white;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #00d4ff;
+    box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+    transform: translateY(-2px);
+}
+
+.form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.9);
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.form-group select:focus {
+    outline: none;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,212,255,0.3);
+    transform: scale(1.02);
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.btn {
+    width: 100%;
+    padding: 1.2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: 'Orbitron', monospace;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #00d4ff, #ff00ff);
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,212,255,0.4);
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #00ff88, #00cc66);
+    color: white;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,255,136,0.4);
+}
+
+.switch-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.switch-link .switch-register, 
+.switch-link .switch-login {
+    color: #00d4ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.switch-link .switch-register:hover,
+.switch-link .switch-login:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    background: linear-gradient(45deg, #ff5252, #ff1744);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: none;
+    text-align: center;
+    font-weight: 500;
+}
+
+.success-message {
+    background: linear-gradient(45deg, #00ff88, #00cc66);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: none;
+    text-align: center;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        margin-top: 120px;
+        padding: 2rem;
+    }
+    
+    .auth-title {
+        font-size: 1.7rem;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    background: linear-gradient(45deg, #00d4ff, #ff00ff);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+    50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+}
+
+/* PROPERTY OF MIKAYLA JOELLE A. CASTRO */
