@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Week 2026 - Event Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/student-style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <i class="fas fa-code"></i> CS Week 2026
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#" class="logout-btn" id="logoutBtn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="logoutConfirmModal" class="logout-confirm-modal">
+        <div class="logout-modal-content">
+            <div class="logout-icon">
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to logout? All session data will be cleared.</p>
+            <div class="logout-buttons">
+                <button onclick="confirmLogout()" class="logout-confirm-btn">
+                    <i class="fas fa-check"></i> Yes
+                </button>
+                <button onclick="closeLogoutConfirm()" class="logout-cancel-btn">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>CS Week 2026</h1>
+            <p>Empowering the Next Generation of Tech Leaders</p>
+            <a href="#register" class="cta-button">Register Now <i class="fas fa-rocket"></i></a>
+        </div>
+    </section>
+
+    <section id="events" class="events-section fade-in">
+        <div class="container">
+            <h2 class="section-title">Event Schedule</h2>
+            <div class="events-grid">
+                <div class="event-card fade-in">
+                    <h3><i class="fas fa-star"></i> Day 1 - Opening Ceremony</h3>
+                    <ul>
+                        <li>Opening Program</li>
+                        <li>Booths & Food Carts</li>
+                        <li>Film Showing</li>
+                        <li>Games & Cosplay</li>
+                    </ul>
+                </div>
+                <div class="event-card fade-in">
+                    <h3><i class="fas fa-brain"></i> Day 2 - Academic Competitions</h3>
+                    <ul>
+                        <li><span class="event-label" data-event="Quiz Bee (Battle of Brains)">Quiz Bee (Battle of Brains)</span></li>
+                        <li><span class="event-label" data-event="Hackathon">Hackathon</span></li>
+                        <li><span class="event-label" data-event="Logic & Puzzle Challenge">Logic & Puzzle Challenge</span></li>
+                    </ul>
+                </div>
+                <div class="event-card fade-in">
+                    <h3><i class="fas fa-paint-brush"></i> Day 3 - Showcasing Creativity</h3>
+                    <ul>
+                        <li><span class="event-label" data-event="Poster Making Contest">Poster Making Contest (Digital)</span></li>
+                        <li><span class="event-label" data-event="Infographics Competition">Infographics Competition</span></li>
+                        <li><span class="event-label" data-event="Digital Modulo Art">Digital Modulo Art</span></li>
+                        <li><span class="event-label" data-event="Esports Tournament">Esports Tournament (Opening)</span></li>
+                    </ul>
+                </div>
+                <div class="event-card fade-in">
+                    <h3><i class="fas fa-chalkboard-teacher"></i> Day 4 - Workshops</h3>
+                    <ul>
+                        <li><span class="event-label" data-event="Seminar">Seminar</span></li>
+                        <li><span class="event-label" data-event="Alumni Talk">Alumni Talk</span></li>
+                        <li>E-sports (Quarter/Semi Finals)</li>
+                    </ul>
+                </div>
+                <div class="event-card fade-in">
+                    <h3><i class="fas fa-gamepad"></i> Day 5 - Student Engagement</h3>
+                    <ul>
+                        <li>E-sports Championship</li>
+                        <li><span class="event-label" data-event="Kahoot Trivia Games">Kahoot Trivia Games</span></li>
+                        <li><span class="event-label" data-event="Escape Room Challenge">Escape Room Challenge</span></li>
+                    </ul>
+                </div>
+                <div class="event-card fade-in">
+                    <h3><i class="fas fa-trophy"></i> Day 6 - Closing Ceremony</h3>
+                    <ul>
+                        <li>Educational Tour</li>
+                        <li>Closing Program</li>
+                        <li>Awarding of Winners</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <div id="modalDescription"></div>
+        </div>
+    </div>
+
+    <section id="register" class="registration-section">
+        <div class="container">
+            <div class="form-container fade-in">
+                <h2 style="text-align: center; margin-bottom: 0.5rem; font-family: 'Orbitron', monospace; font-size: 2rem;">
+                    <i class="fas fa-user-plus"></i> Event Registration
+                </h2>
+                <p style="text-align:center; opacity:0.6; margin-bottom:2rem; font-size:0.9rem;">
+                    <i class="fas fa-info-circle"></i> Your account details are auto-filled below.
+                </p>
+                <form id="registrationForm">
+                    <div id="errorMessage" class="error-message"></div>
+
+                    <!-- AUTO-FILLED FROM ACCOUNT (read-only) -->
+                    <div class="form-group">
+                        <label><i class="fas fa-id-card"></i> Student ID</label>
+                        <input type="text" id="studentId" readonly
+                            style="opacity:0.65; cursor:not-allowed; background:rgba(255,255,255,0.6);">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" id="fullName" readonly
+                            style="opacity:0.65; cursor:not-allowed; background:rgba(255,255,255,0.6);">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" readonly
+                            style="opacity:0.65; cursor:not-allowed; background:rgba(255,255,255,0.6);">
+                    </div>
+
+                    <!-- STILL NEEDED FROM STUDENT -->
+                    <div class="form-group">
+                        <label><i class="fas fa-graduation-cap"></i> Year Level *</label>
+                        <select id="yearLevel" required>
+                            <option value="">Select Year Level</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-layer-group"></i> Section *</label>
+                        <select id="section" required>
+                            <option value="">Select Section</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Contact Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> Select Day *</label>
+                        <select id="eventDay" required>
+                            <option value="">Select Day</option>
+                            <option value="Day1">Day 1 - Opening Ceremony</option>
+                            <option value="Day2">Day 2 - Academic Competitions</option>
+                            <option value="Day3">Day 3 - Creativity Showcase</option>
+                            <option value="Day4">Day 4 - Workshops</option>
+                            <option value="Day5">Day 5 - Student Engagement</option>
+                            <option value="Day6">Day 6 - Closing Ceremony</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user-tag"></i> Register As *</label>
+                        <select id="registerAs" required>
+                            <option value="">Select Type</option>
+                            <option value="Attendee">Attendee</option>
+                            <option value="Participant">Participant</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="activitySection" style="display:none;">
+                        <label id="activityLabel">Activities you'd might be interested in (choose one only):</label>
+                        <div class="radio-group">
+                            <div class="radio-item" data-day="Day2">
+                                <input type="radio" name="events" value="Quiz Bee (Battle of Brains)">
+                                <label>Quiz Bee (Battle of Brains)</label>
+                            </div>
+                            <div class="radio-item" data-day="Day2">
+                                <input type="radio" name="events" value="Hackathon">
+                                <label>Hackathon</label>
+                            </div>
+                            <div class="radio-item" data-day="Day2">
+                                <input type="radio" name="events" value="Logic & Puzzle Challenge">
+                                <label>Logic & Puzzle Challenge</label>
+                            </div>
+                            <div class="radio-item" data-day="Day3">
+                                <input type="radio" name="events" value="Poster Making Contest">
+                                <label>Poster Making Contest</label>
+                            </div>
+                            <div class="radio-item" data-day="Day3">
+                                <input type="radio" name="events" value="Infographics Competition">
+                                <label>Infographics Competition</label>
+                            </div>
+                            <div class="radio-item" data-day="Day3">
+                                <input type="radio" name="events" value="Digital Modulo Art">
+                                <label>Digital Modulo Art</label>
+                            </div>
+                            <div class="radio-item" data-day="Day3">
+                                <input type="radio" id="esports" name="events" value="Esports Tournament">
+                                <label>Esports Tournament</label>
+                            </div>
+                            <div class="form-group" id="teamNameGroup" style="display:none;">
+                                <label><i class="fas fa-users"></i> Team Name *</label>
+                                <input type="text" id="teamName" placeholder="Enter your team name">
+                            </div>
+                            <div class="radio-item" data-day="Day4">
+                                <input type="radio" name="events" value="Seminar">
+                                <label>Seminar</label>
+                            </div>
+                            <div class="radio-item" data-day="Day4">
+                                <input type="radio" name="events" value="Alumni Talk">
+                                <label>Alumni Talk</label>
+                            </div>
+                            <div class="radio-item" data-day="Day5">
+                                <input type="radio" name="events" value="Kahoot Trivia Games">
+                                <label>Kahoot Trivia Games</label>
+                            </div>
+                            <div class="radio-item" data-day="Day5">
+                                <input type="radio" name="events" value="Escape Room Challenge">
+                                <label>Escape Room Challenge</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-comment"></i> Additional Comments</label>
+                        <textarea rows="4" id="comments" placeholder="Any special requests or comments..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Register Now
+                    </button>
+                </form>
+                <div id="successMessage" class="success-message">
+                    <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <h3>Registration Successful!</h3>
+                    <p>Thank you for registering for CS Week 2026! Your registration has been recorded successfully.</p>
+                    <p><strong>Registration Details:</strong></p>
+                    <div id="registrationDetails" style="font-size: 0.95rem; opacity: 0.9; margin-top: 1rem;"></div>
+                    <button onclick="resetForm()" class="cta-button" style="margin-top: 1.5rem; padding: 0.8rem 2rem; font-size: 1rem;">
+                        <i class="fas fa-plus"></i> Register Another
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="js/student-script.js"></script>
+    
+</body>
+</html>
