@@ -72,7 +72,7 @@ function closeLogoutConfirm() {
 async function confirmLogout() {
     await signOut(auth);
     closeLogoutConfirm();
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }
 
 document.getElementById('logoutBtn').addEventListener('click', function(e) {
@@ -295,7 +295,7 @@ registerAs.addEventListener("change", updateUI);
 window.addEventListener('load', () => {
     onAuthStateChanged(auth, async (user) => {
         if (!user) {
-            window.location.href = 'login.html';
+            window.location.href = 'index.html';
             return;
         }
 
