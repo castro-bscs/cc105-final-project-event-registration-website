@@ -186,9 +186,9 @@ function setupFormEventListeners() {
 
 window.addEventListener('load', () => {
     onAuthStateChanged(auth, async (user) => {
-        if (!user) { window.location.href = 'login.html'; return; }
+        if (!user) { window.location.href = 'index.html'; return; }
         const userDoc = await getDoc(doc(db, 'users', user.uid));
-        if (!userDoc.exists() || userDoc.data().role !== 'admin') { window.location.href = 'login.html'; return; }
+        if (!userDoc.exists() || userDoc.data().role !== 'admin') { window.location.href = 'index.html'; return; }
         init();
         await loadRegistrations();
         createDaysCards();
@@ -731,7 +731,7 @@ function closeLogoutConfirm() {
 async function confirmLogout() {
     await signOut(auth);
     closeLogoutConfirm();
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }
 
 document.querySelectorAll('.modal').forEach(modal => {
